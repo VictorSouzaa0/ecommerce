@@ -6,7 +6,7 @@ data = {
     "preco":[500, 250],
     "descricao":["Furar paredes","Parafusar coisas"],
     "imgProduto":["/images", "/images"],
-    "categoriaProduto":["Ferramentas","Ferramentas"],
+    "catProduto":["Ferramentas","Ferramentas"],
     "classProduto":["Manual","Manual"],
     "exibirNome":[True, False]
 }

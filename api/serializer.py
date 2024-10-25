@@ -11,7 +11,7 @@ class ProdutoSerializer (serializers.ModelSerializer):
             'preco',
             'descricao',
             'imagemProduto',
-            'categoriaProduto',
+            'catProduto',
             'classProduto',
             'exibirNome',
             ]
