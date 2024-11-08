@@ -1,4 +1,5 @@
 import sqlite3
+import pandas as pd
 
 class Ecommerce:
     def __init__(self,db="db.sqlite3"):
@@ -20,6 +21,7 @@ class Ecommerce:
                 case "1":
                     self.menu_create()
                 case "2":
+                    self.read()
                     print("Read")
                 case "3":
                     print("Update")
@@ -48,7 +50,7 @@ class Ecommerce:
             catProduto,
             classProduto,
             exibirNome)
-            VALUES(?,?,?,?,?,?,?)''',
+            VALUES(?,?,?,?,?,?,?)''',#Onde é Inserido as informações de produto
             (tituloProduto,
             preco,
             descricao,
@@ -59,7 +61,7 @@ class Ecommerce:
         self.conn.commit()
         print("Produto cadastrado com sucesso!!")
 
-    def menu_create(self):
+    def menu_create(self): #metodo que vai ser olhado por todo objeto
         print(
         '\n'
         '[1] - Título \n'
@@ -70,7 +72,7 @@ class Ecommerce:
         '[6] - Classificação\n'
         '[7] - Exibir\n'
     )
-        titulo = input("TItulo")
+        titulo = input("TItulo: ")
         preco = float(input("Preço: "))
         descricao = input("Descrição: ")
         imagemProduto = input("Imagem: ")
@@ -78,5 +80,25 @@ class Ecommerce:
         classProduto = input("Classificação: ")
         exibirNome = input("Exibir( True, False): ")
         self.create(titulo, preco, descricao, imagemProduto, catProduto, classProduto, exibirNome)
+
+    def read(self):
+        print("\n"
+              "[1] - Lista todos os produtos\n"
+              "[2]- Listar por ID's"
+
+              )
+        op = int(input("Escolha a opção:"))
+        match op:
+            case 1:
+                df = pd.read_sql_query("SELECT * FROM api_produto", self.conn)
+                return print(df)
+                
+            case 2:
+                valor = int(input("ID:"))
+                query = f"SELECT * FROM  api_produto WERE id = {valor}"
+                df = pd.read_sql_query(query, self.conn)
+                return print(query)
+            case _:
+                print("Escolha a opção válida")
 
 home = Ecommerce()
