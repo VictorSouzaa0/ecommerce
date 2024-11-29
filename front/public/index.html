@@ -120,10 +120,6 @@
         let currentId = 1;
 
         async function fetchProduct(id) {
-            const response = await fetch(`http://127.0.0.1:8000/api/produtos/${id}`);
-            console.log('Status da resposta:', response.status);
-            if (!response.ok) throw new Error("Produto não encontrado");
-
             try {
                 const response = await fetch(`http://127.0.0.1:8000/api/produtos/${id}`);
                 if (!response.ok) throw new Error("Produto não encontrado");
